@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$ngSRA-light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+$ngSRA-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+:root {
+    @include mat.all-component-themes($ngSRA-light-theme);
+
+  .dark {
+    @include mat.all-component-colors($ngSRA-dark-theme);
+  }
+}
+

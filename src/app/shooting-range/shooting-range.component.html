@@ -1,0 +1,6 @@
+<mat-card class="card" [ngClass]="shootingRange().Free ? 'free' : 'occupied'">
+    <div class="lane-number">{{shootingRange().LaneNo}}</div>
+    @if (!shootingRange().Free) {
+        <div class="shooter">{{shootingRange().Shooter}}</div>
+    }
+</mat-card>

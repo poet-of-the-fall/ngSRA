@@ -1,1 +1,22 @@
-<p>settings works!</p>
+<h2 mat-dialog-title>Settings</h2>
+<mat-dialog-content>
+  Would you like to delete cat.jpeg?
+
+  + serverUrl: string;
+  + autoLayout: boolean;
+  + rows: number;
+  + cols: number;
+  + showName: boolean;
+  + cornerRadius: number;
+  + cornerRadiusType: CornerRadiusType;
+  + gap: number;
+  + colorFree: string,
+  + colorOccupied: string;
+  + colorText: string;  + intervall: number;
+  + fontSizeNumber: number;
+  + fontSizeName: number
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="applySettings()" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

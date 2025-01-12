@@ -23,7 +23,7 @@ $ngSRA-dark-theme: mat.define-theme((
 ));
 
 :root {
-    @include mat.all-component-themes($ngSRA-light-theme);
+  @include mat.all-component-themes($ngSRA-light-theme);
 
   .dark {
     @include mat.all-component-colors($ngSRA-dark-theme);

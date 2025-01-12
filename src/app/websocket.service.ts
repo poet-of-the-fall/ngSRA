@@ -12,13 +12,17 @@ export class WebsocketService {
 
   constructor() {}
 
-  connectSocket() {
-    this.websocket = webSocket('ws://192.168.10.200:53088');
+  disconnectSocket() {
+    this.websocket?.complete();
+  }
+
+  connectSocket(url: string) {
+    this.websocket = webSocket(`ws://${url}:53088`);
 
     this.websocket.subscribe({
-      next: (data) => this.handleData(data), // Called whenever there is a message from the server.
-      error: (err) => console.log(err), // Called if at any point WebSocket API signals some kind of error.
-      complete: () => console.log('complete'), // Called when connection is closed (for whatever reason).
+      next: (data) => this.handleData(data),
+      error: (err) => console.log(err),
+      complete: () => console.log('complete'),
     });
   }
 
@@ -28,11 +32,6 @@ export class WebsocketService {
         this.laneInfo.next(data);
         break;
     }
-    // if (data.SeqNo > 5000) {
-    //   this.websocket?.complete();
-    //   this.websocket?.unsubscribe();
-    //   this.connectSocket();
-    // }
   }
 
   refreshLaneData() {

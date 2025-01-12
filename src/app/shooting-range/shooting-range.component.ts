@@ -1,5 +1,5 @@
 import { Component, InputSignal, input } from '@angular/core';
-import { Lane, Placeholder } from '../data.model';
+import { Lane, Placeholder, Settings } from '../data.model';
 import { MatCardModule } from '@angular/material/card';
 import { NgClass } from '@angular/common';
 
@@ -12,4 +12,5 @@ import { NgClass } from '@angular/common';
 })
 export class ShootingRangeComponent {
   shootingRange: InputSignal<Lane> = input.required<Lane>();
+  settings: InputSignal<Settings> = input.required<Settings>();
 }

@@ -1,7 +1,19 @@
-<div class="dark mat-app-background" (click)="fullscreen()">
-    <div class="layout" [style]="{'grid-template-rows': 'repeat(' + rows + ', 1fr)', 'grid-template-columns': 'repeat(' + columns + ', 1fr)'}">
+<div class="dark mat-app-background" (click)="fullscreen()" (mousemove)="mousemove()">
+    <div class="layout" [style]="{
+        'grid-template-rows': 'repeat(' + rows + ', 1fr)', 
+        'grid-template-columns': 'repeat(' + columns + ', 1fr)', 
+        'padding': settings.gap + 'px',
+        'gap': settings.gap + 'px'}">
         @for (sr of data; track $index) {
-            <app-shooting-range [shootingRange]="sr"></app-shooting-range>
+            <app-shooting-range [shootingRange]="sr" [settings]="settings"></app-shooting-range>
         }
-    </div>
+</div>
+
+    @if (showSettingsButton) {
+        <div class="settings" (click)="showSettings($event)" >
+            <button mat-fab extended="">
+                <mat-icon>settings</mat-icon> Settings
+            </button>
+        </div>
+    }
 </div>

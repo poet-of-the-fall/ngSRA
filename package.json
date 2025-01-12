@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "material-icons": "^1.13.12",
+    "ngx-color-picker": "^17.0.0",
     "rxjs": "~7.8.0",
     "socket.io": "^4.7.5",
     "tslib": "^2.3.0",

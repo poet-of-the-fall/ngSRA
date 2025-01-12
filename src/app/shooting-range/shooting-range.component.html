@@ -1,6 +1,10 @@
-<mat-card class="card" [ngClass]="shootingRange().Free ? 'free' : 'occupied'">
-    <div class="lane-number">{{shootingRange().LaneNo}}</div>
-    @if (!shootingRange().Free) {
-        <div class="shooter">{{shootingRange().Shooter}}</div>
+<mat-card class="card" 
+    [style]="{'border-radius': settings().cornerRadius + (settings().cornerRadiusType == 'length' ? 'px' : '%'),
+        'background-color': shootingRange().Free ? settings().colorFree : settings().colorOccupied,
+        'color': settings().colorText}"
+    [ngClass]="shootingRange().Free ? 'free' : 'occupied'">
+    <div class="lane-number" [style]="{'font-size': settings().fontSizeNumber + 'px'}">{{shootingRange().LaneNo}}</div>
+    @if (settings().showName) {
+        <div class="shooter" [style]="{'font-size': settings().fontSizeName + 'px'}">{{!shootingRange().Free ? shootingRange().Shooter : ""}}</div>
     }
 </mat-card>

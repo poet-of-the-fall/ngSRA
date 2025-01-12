@@ -14,11 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { SettingsComponent } from './settings/settings.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [ShootingRangeComponent, MatButtonModule, MatIconModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [ShootingRangeComponent, MatButtonModule, MatIconModule],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   readonly dialog = inject(MatDialog);

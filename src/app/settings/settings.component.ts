@@ -9,11 +9,10 @@ import {
 import { Settings } from '../data.model';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule, MatInputModule],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+    selector: 'app-settings',
+    imports: [MatDialogModule, MatButtonModule, MatInputModule],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent {
   readonly dialogRef = inject(MatDialogRef<SettingsComponent>);

@@ -1,22 +1,141 @@
 <h2 mat-dialog-title>Settings</h2>
-<mat-dialog-content>
-  Would you like to delete cat.jpeg?
-
-  + serverUrl: string;
-  + autoLayout: boolean;
-  + rows: number;
-  + cols: number;
-  + showName: boolean;
-  + cornerRadius: number;
-  + cornerRadiusType: CornerRadiusType;
-  + gap: number;
-  + colorFree: string,
-  + colorOccupied: string;
-  + colorText: string;  + intervall: number;
-  + fontSizeNumber: number;
-  + fontSizeName: number
+<mat-dialog-content [formGroup]="settingsForm">
+  <mat-tab-group>
+    <mat-tab label="Design">
+      <div class="tab">
+        <div class="options">
+          <mat-slide-toggle formControlName="showName">Show name</mat-slide-toggle>
+          <div class="options-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Corner radius</mat-label>
+              <input matInput formControlName="cornerRadius">
+              @if (settingsForm.get('cornerRadius')?.hasError('min')) {
+                <mat-hint>Can't be negative.</mat-hint>
+              }
+              @if (settingsForm.get('cornerRadius')?.hasError('max')) {
+                <mat-hint>Can't be bigger than 1000.</mat-hint>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Corner radius format</mat-label>
+              <mat-select formControlName="cornerRadiusType">
+                <mat-option value="length">in pixel</mat-option>
+                <mat-option value="percentage">in percentage</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Color free range</mat-label>
+            <input matInput formControlName="colorFree">
+            @if (settingsForm.get('colorFree')?.hasError('min-length')) {
+              <mat-hint>Needs a hex color value.</mat-hint>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Color occupied range</mat-label>
+            <input matInput formControlName="colorOccupied">
+            @if (settingsForm.get('colorOccupied')?.hasError('min-length')) {
+              <mat-hint>Needs a hex color value.</mat-hint>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Color text</mat-label>
+            <input matInput formControlName="colorText">
+            @if (settingsForm.get('colorText')?.hasError('min-length')) {
+              <mat-hint>Needs a hex color value.</mat-hint>
+            }
+          </mat-form-field>
+          <div class="options-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Font size range number</mat-label>
+              <input matInput formControlName="fontSizeNumber">
+              @if (settingsForm.get('fontSizeNumber')?.hasError('min')) {
+                <mat-hint>Needs to be at least 10.</mat-hint>
+              }
+              @if (settingsForm.get('fontSizeNumber')?.hasError('max')) {
+                <mat-hint>Can't be bigger than 1000.</mat-hint>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Font size shooter name</mat-label>
+              <input matInput formControlName="fontSizeName">
+              @if (settingsForm.get('fontSizeName')?.hasError('min')) {
+                <mat-hint>Needs to be at least 5.</mat-hint>
+              }
+              @if (settingsForm.get('fontSizeName')?.hasError('max')) {
+                <mat-hint>Can't be bigger than 1000.</mat-hint>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          Preview
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Layout">
+      <div class="tab">
+        <div class="options">
+          <mat-slide-toggle formControlName="autoLayout">Auto Layout</mat-slide-toggle>
+          <mat-form-field appearance="outline">
+            <mat-label>Rows</mat-label>
+            <input matInput formControlName="rows">
+            @if (settingsForm.get('rows')?.hasError('min')) {
+              <mat-hint>Needs to be at least 1.</mat-hint>
+            }
+            @if (settingsForm.get('rows')?.hasError('max')) {
+              <mat-hint>Can't be bigger than 100.</mat-hint>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Columns</mat-label>
+            <input matInput formControlName="cols">
+            @if (settingsForm.get('cols')?.hasError('min')) {
+              <mat-hint>Needs to be at least 1.</mat-hint>
+            }
+            @if (settingsForm.get('cols')?.hasError('max')) {
+              <mat-hint>Can't be bigger than 100.</mat-hint>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Gap</mat-label>
+            <input matInput formControlName="gap">
+            @if (settingsForm.get('gap')?.hasError('min')) {
+              <mat-hint>Can't be negative.</mat-hint>
+            }
+            @if (settingsForm.get('gap')?.hasError('max')) {
+              <mat-hint>Can't be bigger than 1000.</mat-hint>
+            }
+          </mat-form-field>
+        </div>
+        <div>
+          Preview
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="General">
+      <div class="tab">
+        <div class="options">
+          <mat-form-field appearance="outline">
+            <mat-label>Server IP Address</mat-label>
+            <input matInput formControlName="serverUrl">
+            @if (settingsForm.get('serverUrl')?.hasError('pattern')) {
+              <mat-hint>Invalid IP address.</mat-hint>
+            }
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Polling intervall in seconds</mat-label>
+            <input matInput formControlName="intervall">
+            @if (settingsForm.get('intervall')?.hasError('min')) {
+              <mat-hint>Can't be negative.</mat-hint>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button (click)="applySettings()" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="applySettings()" cdkFocusInitial [disabled]="settingsForm.invalid">Ok</button>
 </mat-dialog-actions>

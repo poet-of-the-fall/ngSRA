@@ -1,0 +1,33 @@
+::ng-deep {
+    .cdk-overlay-pane {
+        max-width: 80vw !important;
+        max-height: 80vw !important;
+    }
+ }
+
+ .tab {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+
+    div {
+        width: 100%;
+    }
+ }
+
+ .options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+ }
+
+ .options-row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    
+    .mat-mdc-form-field {
+        width: 100%;
+    }
+ }

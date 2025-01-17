@@ -14,10 +14,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { SettingsComponent } from './settings/settings.component';
 
 @Component({
-    selector: 'app-root',
-    imports: [ShootingRangeComponent, MatButtonModule, MatIconModule],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  standalone: true,
+  imports: [ShootingRangeComponent, MatButtonModule, MatIconModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   readonly dialog = inject(MatDialog);
@@ -42,44 +43,48 @@ export class AppComponent {
     });
 
     //TODO remove
-    setInterval(() => {
-      this.processData({
-        Data: [
-          {
-            LaneNo: 1,
-            Free: false,
-            Shooter: 'Max Mustermann',
-          },
-          {
-            LaneNo: 2,
-            Free: true,
-            Shooter: '',
-          },
-          {
-            LaneNo: 3,
-            Free: false,
-            Shooter: 'Daniel Long Name',
-          },
-          {
-            LaneNo: 4,
-            Free: false,
-            Shooter: 'Another Long Name Shooter',
-          },
-          {
-            LaneNo: 5,
-            Free: true,
-            Shooter: '',
-          },
-        ],
-      });
-    }, 1000);
+    // setInterval(() => {
+    //   this.processData({
+    //     Data: [
+    //       {
+    //         LaneNo: 1,
+    //         Free: false,
+    //         Shooter: 'Max Mustermann',
+    //       },
+    //       {
+    //         LaneNo: 2,
+    //         Free: true,
+    //         Shooter: '',
+    //       },
+    //       {
+    //         LaneNo: 3,
+    //         Free: false,
+    //         Shooter: 'Daniel Long Name',
+    //       },
+    //       {
+    //         LaneNo: 4,
+    //         Free: false,
+    //         Shooter: 'Another Long Name Shooter',
+    //       },
+    //       {
+    //         LaneNo: 5,
+    //         Free: true,
+    //         Shooter: '',
+    //       },
+    //     ],
+    //   });
+    // }, 1000);
   }
 
   processData(data: LaneInfo) {
-    this.data = data.Data;
+    if (data.Data == undefined) {
+      this.data.map((l) => (l.Free = false));
+    } else {
+      this.data = data.Data;
+    }
     if (this.settings.autoLayout) {
-      this.rows = Math.floor(Math.sqrt(data.Data.length));
-      this.columns = Math.ceil(data.Data.length / this.rows);
+      this.rows = Math.floor(Math.sqrt(this.data.length));
+      this.columns = Math.ceil(this.data.length / this.rows);
     } else {
       this.rows = this.settings.rows;
       this.columns = this.settings.cols;
@@ -117,7 +122,7 @@ export class AppComponent {
   showSettings(event: MouseEvent) {
     event.stopPropagation();
     const dialogRef = this.dialog.open(SettingsComponent, {
-      data: this.settings,
+      data: { ...this.settings },
     });
 
     dialogRef.afterClosed().subscribe((result: Settings) => {

@@ -41,39 +41,6 @@ export class AppComponent {
     this.websocketService.laneInfo.subscribe((data) => {
       this.processData(data);
     });
-
-    //TODO remove
-    // setInterval(() => {
-    //   this.processData({
-    //     Data: [
-    //       {
-    //         LaneNo: 1,
-    //         Free: false,
-    //         Shooter: 'Max Mustermann',
-    //       },
-    //       {
-    //         LaneNo: 2,
-    //         Free: true,
-    //         Shooter: '',
-    //       },
-    //       {
-    //         LaneNo: 3,
-    //         Free: false,
-    //         Shooter: 'Daniel Long Name',
-    //       },
-    //       {
-    //         LaneNo: 4,
-    //         Free: false,
-    //         Shooter: 'Another Long Name Shooter',
-    //       },
-    //       {
-    //         LaneNo: 5,
-    //         Free: true,
-    //         Shooter: '',
-    //       },
-    //     ],
-    //   });
-    // }, 1000);
   }
 
   processData(data: LaneInfo) {

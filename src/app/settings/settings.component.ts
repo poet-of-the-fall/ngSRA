@@ -1,4 +1,4 @@
-import { afterNextRender, Component, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {
@@ -6,14 +6,11 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { CornerRadiusType, Settings } from '../data.model';
+import { DEFAULT_SETTINGS, Lane, Settings } from '../data.model';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import {
-  MatSlideToggleChange,
-  MatSlideToggleModule,
-} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {
   FormBuilder,
   FormGroup,
@@ -21,7 +18,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { interval, startWith } from 'rxjs';
+import { startWith } from 'rxjs';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { ShootingRangeComponent } from '../shooting-range/shooting-range.component';
 
 @Component({
   selector: 'app-settings',
@@ -36,6 +35,8 @@ import { interval, startWith } from 'rxjs';
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatSelectModule,
+    ColorPickerModule,
+    ShootingRangeComponent,
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
@@ -71,6 +72,28 @@ export class SettingsComponent {
       [Validators.min(5), Validators.max(1000)],
     ],
   });
+  rangePreviews: Array<Lane> = [
+    {
+      LaneNo: 1,
+      Free: true,
+      Shooter: 'John Doe',
+    },
+    {
+      LaneNo: 2,
+      Free: false,
+      Shooter: 'Jane Doe',
+    },
+    {
+      LaneNo: 3,
+      Free: false,
+      Shooter: 'John Doe',
+    },
+    {
+      LaneNo: 4,
+      Free: true,
+      Shooter: 'Jane Doe',
+    },
+  ];
 
   constructor() {
     this.dialogRef.updateSize('80vw', '80vh');
@@ -90,5 +113,9 @@ export class SettingsComponent {
 
   applySettings() {
     this.dialogRef.close(this.settingsForm.value);
+  }
+
+  resetDefaults() {
+    this.settingsForm.setValue(DEFAULT_SETTINGS);
   }
 }

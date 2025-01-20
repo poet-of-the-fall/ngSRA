@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^19.0.6",
     "@angular/platform-browser-dynamic": "^19.0.6",
     "@angular/router": "^19.0.6",
-    "@tauri-apps/cli": "^2.2.5",
     "material-icons": "^1.13.12",
     "ngx-color-picker": "^17.0.0",
     "rxjs": "~7.8.0",

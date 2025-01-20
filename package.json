@@ -1,6 +1,7 @@
 {
   "name": "ng-sra",
   "version": "0.0.0",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -31,7 +32,9 @@
     "@angular-devkit/build-angular": "^19.0.7",
     "@angular/cli": "^19.0.7",
     "@angular/compiler-cli": "^19.0.6",
+    "@electron/packager": "^18.3.6",
     "@types/jasmine": "~5.1.0",
+    "electron": "^34.0.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

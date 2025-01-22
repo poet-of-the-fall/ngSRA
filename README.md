@@ -14,6 +14,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Build electron package
+## Build electron app
 
 First run the build command from above to build the project. After this you can run `npx @electron/packager . --all --overwrite --ignore=node_modules --ignore=src --ignore=public --ignore=.angular --ignore=.vscode` to build electron for all targets.
+
+## Build tauri app
+
+You need to have `rust` installed to build with [Tauri](https://v2.tauri.app). Then run `npx tauri build` to build for your current architecture.

@@ -8,11 +8,12 @@ const {app, BrowserWindow} = require('electron')
       mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        fullscreen: true,
         webPreferences: {
           nodeIntegration: true
         }
       })
+
+      mainWindow.maximize();
 
       mainWindow.loadURL(
         url.format({

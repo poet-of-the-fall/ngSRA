@@ -4,13 +4,13 @@ _ngSRA_ ist ein Tool, um die Standbelegung bei Meyton Schießständen anzuzeigen
 
 Der Laptop, auf dem das Tool läuft, muss mit dem Meyton Netzwerk vom Schießstand verbunden sein. Im Idealfall läuft nach dem Start dann schon alles und sieht in etwa so aus:
 
-![Übersicht](https://github.com/poet-of-the-fall/ngSRA/tree/main/img/overview.png)
+![Übersicht](https://raw.githubusercontent.com/poet-of-the-fall/ngSRA/refs/heads/main/img/overview.png)
 
 Wenn man mit der Maus auf die Oberfläche klickt, wechselt das Programm in den Vollbildmodus (ESC drücken, um da wieder raus zu kommen).
 
 Wenn man die Maus auf der Oberfläche bewegt, erscheint unten rechts eine Schaltfläche, mit der man zu den Einstellungen gelangt.
 
-![Einstellungen](https://github.com/poet-of-the-fall/ngSRA/tree/main/img/settings.png)
+![Einstellungen](https://raw.githubusercontent.com/poet-of-the-fall/ngSRA/refs/heads/main/img/settings.png)
 
 Dort kann man unter anderem den Server ändern (fall nicht die Standardeinstellungen verwendet werden) und das Intervall, in dem die Oberfläche aktualisiert wird (evtl. hier die Zeit etwas höher setzen, teilweise funktioniert LANA nach einiger Zeit nicht mehr und der Server muss neu gestartet werden).
 

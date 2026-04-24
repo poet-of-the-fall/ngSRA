@@ -42,7 +42,7 @@ export class WebsocketService {
       VerSP: 2,
       SeqNo: 9,
       Cmd: 'GetLaneInfo',
-      Data: { StartlistID: 126 },
+      Data: { StartlistID: 1 },
     };
     this.websocket?.next(message);
   }

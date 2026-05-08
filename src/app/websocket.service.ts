@@ -12,7 +12,7 @@ export class WebsocketService {
   starterlistId: number = 1;
 
   constructor() {
-    const slId = localStorage.getItem("starterlistId");
+    const slId = localStorage.getItem('starterlistId');
     if (slId) {
       this.starterlistId = parseInt(slId);
     }
@@ -48,7 +48,7 @@ export class WebsocketService {
 
   private incrementStarterlistId() {
     this.starterlistId = this.starterlistId + 1;
-    localStorage.setItem("starterlistId", this.starterlistId.toString());
+    localStorage.setItem('starterlistId', this.starterlistId.toString());
     this.refreshLaneData();
   }
 
@@ -65,7 +65,3 @@ export class WebsocketService {
     this.websocket?.next(message);
   }
 }
-
-{"Prot":"MEWS","RV":-3,"RVErrorMsg":"Fehler beim Laden von Daten aus der Datenbank!","Rsp":"GetLaneInfo","SeqNo":5778,"SeqNoRsp":9,"SubProt":"LA","VerP":2,"VerSP":2}
-
-{"Prot":"MEWS","RV":0,"Rsp":"GetLaneInfo","SeqNo":5859,"SeqNoRsp":11,"SubProt":"LA","VerP":2,"VerSP":2}

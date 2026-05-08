@@ -9,8 +9,14 @@ import { LaneInfo } from './data.model';
 export class WebsocketService {
   private websocket?: WebSocketSubject<any>;
   laneInfo: Subject<LaneInfo> = new Subject<LaneInfo>();
+  starterlistId: number = 1;
 
-  constructor() {}
+  constructor() {
+    const slId = localStorage.getItem("starterlistId");
+    if (slId) {
+      this.starterlistId = parseInt(slId);
+    }
+  }
 
   disconnectSocket() {
     this.websocket?.complete();
@@ -27,11 +33,23 @@ export class WebsocketService {
   }
 
   private handleData(data: any) {
+    if (data.RVErrorMsg) {
+      this.incrementStarterlistId();
+      return;
+    }
     switch (data.Rsp) {
       case 'GetLaneInfo':
-        this.laneInfo.next(data);
+        if (data.Data) {
+          this.laneInfo.next(data);
+        }
         break;
     }
+  }
+
+  private incrementStarterlistId() {
+    this.starterlistId = this.starterlistId + 1;
+    localStorage.setItem("starterlistId", this.starterlistId.toString());
+    this.refreshLaneData();
   }
 
   refreshLaneData() {
@@ -42,8 +60,12 @@ export class WebsocketService {
       VerSP: 2,
       SeqNo: 9,
       Cmd: 'GetLaneInfo',
-      Data: { StartlistID: 1 },
+      Data: { StartlistID: this.starterlistId },
     };
     this.websocket?.next(message);
   }
 }
+
+{"Prot":"MEWS","RV":-3,"RVErrorMsg":"Fehler beim Laden von Daten aus der Datenbank!","Rsp":"GetLaneInfo","SeqNo":5778,"SeqNoRsp":9,"SubProt":"LA","VerP":2,"VerSP":2}
+
+{"Prot":"MEWS","RV":0,"Rsp":"GetLaneInfo","SeqNo":5859,"SeqNoRsp":11,"SubProt":"LA","VerP":2,"VerSP":2}

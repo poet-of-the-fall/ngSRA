@@ -48,6 +48,9 @@ export class WebsocketService {
 
   private incrementStarterlistId() {
     this.starterlistId = this.starterlistId + 1;
+    if (this.starterlistId > 2000) {
+      this.starterlistId = 1;
+    }
     localStorage.setItem('starterlistId', this.starterlistId.toString());
     this.refreshLaneData();
   }
